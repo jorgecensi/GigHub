@@ -54,9 +54,19 @@ span.field-validation-error {
     -webkit-box-shadow: none; 
     box-shadow: none; 
 }
+.form-control{
+    font-size:17px;
+    padding:20px 15px;
+    -ms-border-radius:9px;
+    border-radius:9px;
+}
 .dropdown-menu{
     box-shadow:none;
     -webkit-box-shadow: none;
+}
+.btn {
+    -ms-border-radius: 9px;
+    border-radius:9px;
 }
 
 /* Page-Level Styles*/
@@ -95,9 +105,10 @@ span.field-validation-error {
     top:0;
     left:70px;
 }
-.gigs > li .details .artist{
-    font-weight:bold;
-    display:block;
+.gigs > li .details .artist {
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
 }
 
 .gigs > li .details .genre{
