@@ -59,9 +59,20 @@ span.field-validation-error {
 .navbar-inverse .navbar-nav > li > a {
         color: #fff;
 }
+
+.navbar-inverse .notifications{
+    position:relative;
+}
+.navbar-inverse .notifications .badge {
+        position: absolute;
+        top:8px;
+        right:-1px;
+        background: red;
+    }
+
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
         background-color: rgba(139, 28, 169, 0.86);
-}
+    }
 .navbar-inverse .navbar-nav > .dropdown > a .caret {
     border-top-color: #fff;
     border-bottom-color: #fff;
