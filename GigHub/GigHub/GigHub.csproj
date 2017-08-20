@@ -29,6 +29,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -211,6 +212,7 @@
     <Compile Include="Controllers\API\AttendancesController.cs" />
     <Compile Include="Controllers\API\FollowingsController.cs" />
     <Compile Include="Controllers\API\NotificationsController.cs" />
+    <Compile Include="Controllers\FolloweesController.cs" />
     <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DTOs\GenreDto.cs" />
@@ -228,6 +230,7 @@
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\NotificationType.cs" />
     <Compile Include="Models\UserNotification.cs" />
+    <Compile Include="ViewModels\GigDetailsViewModel.cs" />
     <Compile Include="ViewModels\GigsViewModel.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DTOs\AttendanceDTO.cs" />
@@ -363,6 +366,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Gigs\GigForm.cshtml" />
     <Content Include="Views\Gigs\Mine.cshtml" />
+    <Content Include="Views\Followees\Index.cshtml" />
+    <Content Include="Views\Artist\Artist.cshtml" />
+    <Content Include="Views\Gigs\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
