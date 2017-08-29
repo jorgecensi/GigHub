@@ -16,6 +16,6 @@
 
     return {
         createAttendance: createAttendance,
-        deleteAttendace: deleteAttendance
+        deleteAttendance: deleteAttendance
     }
 }();
