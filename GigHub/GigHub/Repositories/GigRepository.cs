@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace GigHub.Repositories
 {
-    public class GigRepository
+    public class GigRepository : IGigRepository
     {
         private readonly ApplicationDbContext _context;
 
@@ -33,7 +33,7 @@ namespace GigHub.Repositories
                 .ToList();
         }
 
-        public List<Gig> GetFutureUserGigs(string userId)
+        public IEnumerable<Gig> GetFutureUserGigs(string userId)
         {
             return _context.Gigs
                 .Where(g =>
