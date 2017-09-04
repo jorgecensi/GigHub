@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using GigHub.DTOs;
-using GigHub.Models;
+using GigHub.Core.DTOs;
+using GigHub.Core.Models;
+using GigHub.Persistence;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Data.Entity;

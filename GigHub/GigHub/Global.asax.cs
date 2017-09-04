@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using GigHub.DTOs;
-using GigHub.Models;
+using GigHub.Core.DTOs;
+using GigHub.Core.Models;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
