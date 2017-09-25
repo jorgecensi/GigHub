@@ -21,10 +21,12 @@ namespace GigHub.Controllers.API
             var userId = User.Identity.GetUserId();
             var gig = _unitOfWork.Gigs.GetGigWithAttendees(id);
 
-            if (gig.IsCanceled)
-            {
+            if (gig == null)
                 return NotFound();
-            }
+
+            if (gig.IsCanceled)
+                return NotFound();
+
 
             gig.Cancel();
 
