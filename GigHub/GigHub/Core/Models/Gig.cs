@@ -11,7 +11,7 @@ namespace GigHub.Core.Models
 
         public bool IsCanceled { get; private set; }
 
-        public ApplicationUser Artist { get; private set; }
+        public ApplicationUser Artist { get; set; }
 
         public string ArtistId { get; set; }
 

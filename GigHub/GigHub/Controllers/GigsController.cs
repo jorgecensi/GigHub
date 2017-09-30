@@ -19,7 +19,7 @@ namespace GigHub.Controllers
         }
 
         [Authorize]
-        public ActionResult Mine()
+        public ViewResult Mine()
         {
             return View(_unitOfWork.Gigs.GetFutureUserGigs(User.Identity.GetUserId()));
         }
