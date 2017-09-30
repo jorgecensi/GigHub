@@ -29,13 +29,12 @@ namespace GigHub.Persistence
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new GigConfiguration());
-            modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
-            modelBuilder.Configurations.Add(new UserNotificationConfiguration());
-            modelBuilder.Configurations.Add(new FollowingConfiguration());
             modelBuilder.Configurations.Add(new GenreConfiguration());
-            modelBuilder.Configurations.Add(new GigConfiguration());
+            modelBuilder.Configurations.Add(new AttendanceConfiguration());
+            modelBuilder.Configurations.Add(new FollowingConfiguration());
             modelBuilder.Configurations.Add(new NotificationConfiguration());
             modelBuilder.Configurations.Add(new UserNotificationConfiguration());
+            modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
