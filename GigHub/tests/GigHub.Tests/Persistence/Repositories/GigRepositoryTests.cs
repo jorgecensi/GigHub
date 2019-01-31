@@ -68,7 +68,7 @@ namespace GigHub.Tests.Persistence.Repositories
         }
 
         [TestMethod]
-        public void GetUpcomingGigsByArtist_GigIsForTheGivenArtistAndIsInTheFuture_ShouldNotBeReturned()
+        public void GetUpcomingGigsByArtist_GigIsForTheGivenArtistAndIsInTheFuture_ShouldReturnSameGig()
         {
             var gig = new Gig { DateTime = DateTime.Now.AddDays(1), ArtistId = "1" };
 
