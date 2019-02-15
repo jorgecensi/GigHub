@@ -1,5 +1,7 @@
 ﻿using GigHub.Core;
+using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 using System.Web.Http;
 
 namespace GigHub.Controllers.API
@@ -33,6 +35,13 @@ namespace GigHub.Controllers.API
 
             return Ok();
 
+        }
+
+        [HttpGet]
+        public IEnumerable<Gig> Gigs()
+        {
+            var gigs = _unitOfWork.Gigs.GetUpcomingGigs();
+            return gigs;
         }
     }
 }
