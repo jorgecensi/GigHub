@@ -43,5 +43,24 @@ namespace GigHub.Controllers.API
             var gigs = _unitOfWork.Gigs.GetUpcomingGigs();
             return gigs;
         }
+        public IHttpActionResult PostGig(Gig gigViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var gig = new Gig
+            {
+                ArtistId = User.Identity.GetUserId(),
+                DateTime = gigViewModel.DateTime,
+                GenreId = gigViewModel.GenreId,
+                Venue = gigViewModel.Venue
+            };
+            
+            _unitOfWork.Gigs.Add(gig);
+            _unitOfWork.Complete();
+
+            return CreatedAtRoute("DefaultApi", new { id = gig.Id }, gig);
+        }
     }
 }
