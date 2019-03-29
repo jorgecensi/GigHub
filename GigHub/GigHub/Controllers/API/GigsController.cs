@@ -2,6 +2,7 @@
 using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
+using System.Net;
 using System.Web.Http;
 
 namespace GigHub.Controllers.API
@@ -43,6 +44,8 @@ namespace GigHub.Controllers.API
             var gigs = _unitOfWork.Gigs.GetUpcomingGigs();
             return gigs;
         }
+
+        [HttpPost]
         public IHttpActionResult PostGig(Gig gigViewModel)
         {
             if (!ModelState.IsValid)
@@ -61,6 +64,33 @@ namespace GigHub.Controllers.API
             _unitOfWork.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = gig.Id }, gig);
+        }
+
+        [HttpPut]
+        public IHttpActionResult UpdateGig(int id, Gig gigViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (id != gigViewModel.Id)
+            {
+                return BadRequest();
+            }
+            var userId = User.Identity.GetUserId();
+            if (userId != gigViewModel.ArtistId)
+            {
+                return StatusCode(HttpStatusCode.Conflict);
+            }
+
+            var gig = _unitOfWork.Gigs.GetGigWithAttendees(gigViewModel.Id);
+            if (gig == null)
+                return NotFound();
+            if (gig.ArtistId != User.Identity.GetUserId())
+                return BadRequest();
+            gig.Modify(gigViewModel.DateTime, gigViewModel.Genre.Id, gigViewModel.Venue);
+            _unitOfWork.Complete();
+            return StatusCode(HttpStatusCode.NoContent);
         }
     }
 }
