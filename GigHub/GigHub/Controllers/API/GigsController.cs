@@ -1,7 +1,10 @@
-﻿using GigHub.Core;
+﻿using AutoMapper;
+using GigHub.Core;
+using GigHub.Core.DTOs;
 using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Http;
 
@@ -39,10 +42,10 @@ namespace GigHub.Controllers.API
         }
 
         [HttpGet]
-        public IEnumerable<Gig> Gigs()
+        public IEnumerable<GigDto> Gigs()
         {
             var gigs = _unitOfWork.Gigs.GetUpcomingGigs();
-            return gigs;
+            return gigs.ToList().Select(Mapper.Map<Gig, GigDto>);
         }
 
         [HttpPost]
@@ -59,7 +62,7 @@ namespace GigHub.Controllers.API
                 GenreId = gigViewModel.GenreId,
                 Venue = gigViewModel.Venue
             };
-            
+
             _unitOfWork.Gigs.Add(gig);
             _unitOfWork.Complete();
 

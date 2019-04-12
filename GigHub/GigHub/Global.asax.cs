@@ -17,6 +17,7 @@ namespace GigHub
                 cfg.CreateMap<Gig, GigDto>();
                 cfg.CreateMap<Notification, NotificationDto>();
                 cfg.CreateMap<ApplicationUser, UserDto>();
+                cfg.CreateMap<Genre, GenreDto>();
             });
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
