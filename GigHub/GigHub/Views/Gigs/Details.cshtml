@@ -19,6 +19,16 @@
 <p>
     Performing at @Model.Gig.Venue on @Model.Gig.DateTime.ToString("dd/MM/yyyy") at @Model.Gig.DateTime.ToString("HH:mm")
 </p>
+<p>
+    Address: @Model.VenueAddress
+</p>
+<p>
+    City: @Model.City
+</p>
+@if (Model.Gig.IsPartnerCity)
+{
+    <span class="badge badge-success">Partner</span>
+}
 
 @if (User.Identity.IsAuthenticated && Model.IsAttending)
 {

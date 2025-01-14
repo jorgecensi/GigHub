@@ -19,9 +19,6 @@ namespace GigHub.Core.ViewModels
         public string VenueAddress { get; set; }
 
         [Required]
-        public string City { get; set; }
-
-        [Required]
         [FutureDate]
         public string Date { get; set; }
 
