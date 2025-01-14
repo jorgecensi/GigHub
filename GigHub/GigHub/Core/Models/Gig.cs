@@ -19,6 +19,8 @@ namespace GigHub.Core.Models
 
         public string Venue { get; set; }
 
+        public string VenueAddress { get; set; }
+
         public Genre Genre { get; set; }
 
         public byte GenreId { get; set; }
@@ -42,7 +44,7 @@ namespace GigHub.Core.Models
             }
         }
 
-        public void Modify(DateTime dateTime, byte genreId, string venue)
+        public void Modify(DateTime dateTime, byte genreId, string venue, string venueAddress)
         {
 
             var notification = Notification.GigUpdated(this, DateTime, Venue);
@@ -50,6 +52,7 @@ namespace GigHub.Core.Models
             DateTime = dateTime;
             GenreId = genreId;
             Venue = venue;
+            VenueAddress = venueAddress;
 
             foreach (var attendee in Attendances.Select(a => a.Attendee))
             {

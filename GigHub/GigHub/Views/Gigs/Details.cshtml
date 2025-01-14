@@ -19,6 +19,9 @@
 <p>
     Performing at @Model.Gig.Venue on @Model.Gig.DateTime.ToString("dd/MM/yyyy") at @Model.Gig.DateTime.ToString("HH:mm")
 </p>
+<p>
+    Address: @Model.VenueAddress
+</p>
 
 @if (User.Identity.IsAuthenticated && Model.IsAttending)
 {

@@ -1,4 +1,3 @@
-﻿
 using GigHub.Core;
 using GigHub.Core.Models;
 using GigHub.Core.ViewModels;
@@ -12,7 +11,6 @@ namespace GigHub.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
-
         public GigsController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -23,8 +21,6 @@ namespace GigHub.Controllers
         {
             return View(_unitOfWork.Gigs.GetFutureUserGigs(User.Identity.GetUserId()));
         }
-
-
 
         [Authorize]
         public ActionResult Attending()
@@ -40,12 +36,7 @@ namespace GigHub.Controllers
             };
 
             return View("Gigs", viewModel);
-
         }
-
-
-
-
 
         [HttpPost]
         public ActionResult Search(GigsViewModel viewModel)
@@ -60,8 +51,9 @@ namespace GigHub.Controllers
             var viewModel = new GigFormViewModel
             {
                 Genres = _unitOfWork.Genres.GetAllGenres(),
-                Heading = "Add a Gig"
-
+                Heading = "Add a Gig",
+                Venue = string.Empty,
+                VenueAddress = string.Empty
             };
             return View("GigForm", viewModel);
         }
@@ -69,7 +61,6 @@ namespace GigHub.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-
             var gig = _unitOfWork.Gigs.GetGig(id);
             if (gig == null)
                 return HttpNotFound();
@@ -85,8 +76,8 @@ namespace GigHub.Controllers
                 Date = gig.DateTime.ToString("dd/MM/yyyy"),
                 Time = gig.DateTime.ToString("HH:mm"),
                 Venue = gig.Venue,
+                VenueAddress = gig.VenueAddress,
                 Genre = gig.GenreId
-
             };
             return View("GigForm", viewModel);
         }
@@ -99,7 +90,11 @@ namespace GigHub.Controllers
             if (gig == null)
                 return HttpNotFound();
 
-            var viewModel = new GigDetailsViewModel { Gig = gig };
+            var viewModel = new GigDetailsViewModel
+            {
+                Gig = gig,
+                VenueAddress = gig.VenueAddress
+            };
 
             if (User.Identity.IsAuthenticated)
             {
@@ -110,10 +105,7 @@ namespace GigHub.Controllers
                 viewModel.IsFollowing = _unitOfWork.Followings.GetFollowing(gig.ArtistId, userId) != null;
             }
 
-
-
             return View("Details", viewModel);
-
         }
 
         [Authorize]
@@ -132,16 +124,14 @@ namespace GigHub.Controllers
                 ArtistId = User.Identity.GetUserId(),
                 DateTime = viewModel.GetDateTime(),
                 GenreId = viewModel.Genre,
-                Venue = viewModel.Venue
+                Venue = viewModel.Venue,
+                VenueAddress = viewModel.VenueAddress
             };
 
             _unitOfWork.Gigs.Add(gig);
             _unitOfWork.Complete();
 
-
-
             return RedirectToAction("Mine", "Gigs");
-
         }
 
         [Authorize]
@@ -162,13 +152,11 @@ namespace GigHub.Controllers
             if (gig.ArtistId != User.Identity.GetUserId())
                 return new HttpUnauthorizedResult();
 
-
-            gig.Modify(viewModel.GetDateTime(), viewModel.Genre, viewModel.Venue);
+            gig.Modify(viewModel.GetDateTime(), viewModel.Genre, viewModel.Venue, viewModel.VenueAddress);
 
             _unitOfWork.Complete();
 
             return RedirectToAction("Mine", "Gigs");
-
         }
     }
 }

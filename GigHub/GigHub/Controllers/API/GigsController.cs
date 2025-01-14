@@ -60,7 +60,8 @@ namespace GigHub.Controllers.API
                 ArtistId = User.Identity.GetUserId(),
                 DateTime = gigViewModel.DateTime,
                 GenreId = gigViewModel.GenreId,
-                Venue = gigViewModel.Venue
+                Venue = gigViewModel.Venue,
+                VenueAddress = gigViewModel.VenueAddress
             };
 
             _unitOfWork.Gigs.Add(gig);
@@ -91,7 +92,7 @@ namespace GigHub.Controllers.API
                 return NotFound();
             if (gig.ArtistId != User.Identity.GetUserId())
                 return BadRequest();
-            gig.Modify(gigViewModel.DateTime, gigViewModel.Genre.Id, gigViewModel.Venue);
+            gig.Modify(gigViewModel.DateTime, gigViewModel.Genre.Id, gigViewModel.Venue, gigViewModel.VenueAddress);
             _unitOfWork.Complete();
             return StatusCode(HttpStatusCode.NoContent);
         }

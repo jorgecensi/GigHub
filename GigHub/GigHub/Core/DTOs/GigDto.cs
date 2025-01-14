@@ -9,6 +9,7 @@ namespace GigHub.Core.DTOs
         public UserDto Artist { get; set; }
         public DateTime DateTime { get; set; }
         public string Venue { get; set; }
+        public string VenueAddress { get; set; }
         public GenreDto Genre { get; set; }
         public byte GenreId { get; set; }
 
