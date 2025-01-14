@@ -61,8 +61,7 @@ namespace GigHub.Controllers.API
                 DateTime = gigViewModel.DateTime,
                 GenreId = gigViewModel.GenreId,
                 Venue = gigViewModel.Venue,
-                VenueAddress = gigViewModel.VenueAddress,
-                City = gigViewModel.City
+                VenueAddress = gigViewModel.VenueAddress
             };
 
             _unitOfWork.Gigs.Add(gig);

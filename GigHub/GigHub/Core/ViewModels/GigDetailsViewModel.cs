@@ -8,6 +8,5 @@ namespace GigHub.Core.ViewModels
         public bool IsAttending { get; set; }
         public bool IsFollowing { get; set; }
         public string VenueAddress { get; set; }
-        public string City { get; set; }
     }
 }
