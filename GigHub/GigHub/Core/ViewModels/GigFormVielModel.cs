@@ -12,9 +12,14 @@ namespace GigHub.Core.ViewModels
     {
         public int Id { get; set; }
 
-
         [Required]
         public string Venue { get; set; }
+
+        [Required]
+        public string VenueAddress { get; set; }
+
+        [Required]
+        public string City { get; set; }
 
         [Required]
         [FutureDate]
@@ -29,12 +34,9 @@ namespace GigHub.Core.ViewModels
 
         public IEnumerable<Genre> Genres { get; set; }
 
-
         public DateTime GetDateTime()
         {
-
             return DateTime.Parse(string.Format("{0} {1}", Date, Time));
-
         }
 
         public string Heading { get; set; }

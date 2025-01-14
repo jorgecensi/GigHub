@@ -18,6 +18,10 @@ namespace GigHub.Persistence.EntityConfigurations
                 .IsRequired()
                 .HasMaxLength(255);
 
+            Property(g => g.City)
+                .IsRequired()
+                .HasMaxLength(255);
+
             Property(g => g.GenreId)
                 .IsRequired();
 
